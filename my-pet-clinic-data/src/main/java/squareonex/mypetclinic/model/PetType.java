@@ -1,4 +1,4 @@
-package com.squareonex.mypetclinic.model;
+package squareonex.mypetclinic.model;
 
 import lombok.Getter;
 import lombok.Setter;
