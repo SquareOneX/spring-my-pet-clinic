@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.squareonex</groupId>
     <artifactId>my-pet-clinic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
     <name>my-pet-clinic</name>
     <description>my-pet-clinic</description>
@@ -34,5 +34,6 @@
     </build>
     <scm>
         <developerConnection>scm:git:https://github.com/SquareOneX/spring-my-pet-clinic.git</developerConnection>
-    </scm>
+      <tag>my-pet-clinic-0.0.1</tag>
+  </scm>
 </project>
