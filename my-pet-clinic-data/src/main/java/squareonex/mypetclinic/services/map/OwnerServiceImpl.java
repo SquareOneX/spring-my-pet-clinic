@@ -1,10 +1,12 @@
 package squareonex.mypetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import squareonex.mypetclinic.model.Owner;
 import squareonex.mypetclinic.services.OwnerService;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceImpl extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
     public Set<Owner> findAll() {
