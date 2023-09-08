@@ -8,6 +8,8 @@ import java.util.Set;
 
 @Service
 public class OwnerServiceImpl extends AbstractMapService<Owner, Long> implements OwnerService {
+    private Long key = 0L;
+
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
@@ -25,7 +27,7 @@ public class OwnerServiceImpl extends AbstractMapService<Owner, Long> implements
 
     @Override
     public Owner save(Owner object) {
-        return null;
+        return super.save(key++, object);
     }
 
     @Override
