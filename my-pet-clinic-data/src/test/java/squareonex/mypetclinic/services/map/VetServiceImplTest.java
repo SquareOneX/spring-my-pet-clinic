@@ -2,26 +2,25 @@ package squareonex.mypetclinic.services.map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import squareonex.mypetclinic.model.Owner;
+import squareonex.mypetclinic.model.Vet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class OwnerServiceImplTest extends AbstractMapServiceTest<Owner, Long>{
-    private OwnerServiceImpl unit;
+class VetServiceImplTest extends AbstractMapServiceTest<Vet, Long> {
+    private VetServiceImpl unit;
     @Override
     @BeforeEach
     void setUp() {
-        super.setUp();
-        this.unit = new OwnerServiceImpl();
+        this.unit = new VetServiceImpl();
     }
 
     @Test
     public void saveingObjectsWithoutKeyShouldNotOverrideExistingObjects(){
-        Owner existingObject = new Owner();
+        Vet existingObject = new Vet();
         existingObject.setId(0L);
         unit.map.put(0L, existingObject);
 
-        unit.save(new Owner());
+        unit.save(new Vet());
 
         assertEquals(2, unit.map.size());
     }
