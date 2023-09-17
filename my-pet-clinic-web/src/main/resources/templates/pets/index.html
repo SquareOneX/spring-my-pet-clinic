@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pet Index</title>
+</head>
+<body>
+<h1 th:text="'List of Pets'">List of Pets...</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Pet type</th>
+        <th>Owner</th>
+        <th>Date of birth</th>
+    </tr>
+    <tr th:each="pet: ${pets}">
+        <td th:text="${vet.id}"></td>
+        <td th:text="${vet.petType}"></td>
+        <td th:text="${vet.owner}"></td>
+        <td th:text="${vet.birthDate}"></td>
+    </tr>
+</table>
+</body>
+</html>
