@@ -1,12 +1,10 @@
 package squareonex.mypetclinic.services.map;
 
-import org.springframework.stereotype.Service;
 import squareonex.mypetclinic.model.Vet;
 import squareonex.mypetclinic.services.VetService;
 
 import java.util.Set;
 
-@Service
 public class VetServiceImpl extends AbstractMapService<Vet, Long> implements VetService {
     private Long key = 0L;
 
