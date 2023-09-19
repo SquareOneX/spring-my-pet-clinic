@@ -8,10 +8,12 @@ import squareonex.mypetclinic.model.PetType;
 import squareonex.mypetclinic.model.Vet;
 import squareonex.mypetclinic.services.OwnerService;
 import squareonex.mypetclinic.services.PetService;
+import squareonex.mypetclinic.services.PetTypeService;
 import squareonex.mypetclinic.services.VetService;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -19,11 +21,13 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetService petService;
+    private final PetTypeService petTypeService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetService petService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petService = petService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
@@ -40,12 +44,18 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
+        owner1.setAddress("Dresdner Straße 200");
+        owner1.setCity("Freiberg - GER");
+        owner1.setTelephone("0815 4206969");
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
+        owner2.setAddress("Main Street 1");
+        owner2.setCity("Diamond City");
+        owner2.setTelephone(null);
 
         ownerService.save(owner2);
 
@@ -72,14 +82,35 @@ public class DataLoader implements CommandLineRunner {
 
         pet1.setPetType(petType);
         pet1.setBirthDate(LocalDate.of(2022, Month.JANUARY, 20));
-        petService.save(pet1);
 
         Pet pet2 = new Pet();
         pet2.setOwner(owner2);
 
         pet2.setPetType(petType);
         pet2.setBirthDate(LocalDate.of(2022, Month.OCTOBER, 15));
+
+        Pet pet3 = new Pet();
+        pet3.setOwner(owner1);
+        pet3.setBirthDate(LocalDate.of(2023, Month.JUNE, 1));
+
+        owner1.setPets(Set.of(pet1, pet3));
+        owner2.setPets(Set.of(pet2));
+
+        ownerService.save(owner1);
+        ownerService.save(owner2);
+
+        PetType petType1 = new PetType("cat");
+        PetType petType2 = new PetType("dog");
+        PetType petType3 = new PetType("mouse");
+
+        pet1.setPetType(petType1);
+        pet2.setPetType(petType2);
         petService.save(pet2);
+        petService.save(pet1);
+
+        petTypeService.save(petType1);
+        petTypeService.save(petType2);
+        petTypeService.save(petType3);
 
         System.out.println("Loaded Pets....");
     }}
