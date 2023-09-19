@@ -4,9 +4,9 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Vet extends Person{
-    private VetSpecialty specialty;
+public class VetSpecialty extends BaseEntity    {
+    private String description;
 }
