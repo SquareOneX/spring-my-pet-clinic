@@ -1,18 +1,21 @@
 package squareonex.mypetclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
+@Entity
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "visits")
 public class Visit extends BaseEntity{
-    LocalDate date;
+    @Column(name = "date")
+    private LocalDate date;
+    @Column(name = "description")
     private String description;
-    private String pet;
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 }
