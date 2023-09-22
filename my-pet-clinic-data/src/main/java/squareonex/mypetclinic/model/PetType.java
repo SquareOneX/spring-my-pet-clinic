@@ -1,14 +1,16 @@
 package squareonex.mypetclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Entity
+@Table(name = "types")
 public class PetType extends BaseEntity {
+    @Column(name = "name")
     private String name;
 }
