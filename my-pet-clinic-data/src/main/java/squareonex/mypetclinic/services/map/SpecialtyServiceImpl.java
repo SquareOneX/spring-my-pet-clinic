@@ -1,25 +1,25 @@
 package squareonex.mypetclinic.services.map;
 
-import squareonex.mypetclinic.model.VetSpecialty;
-import squareonex.mypetclinic.services.VetSpecialtyService;
+import squareonex.mypetclinic.model.Specialty;
+import squareonex.mypetclinic.services.SpecialtyService;
 
 import java.util.Set;
 
-public class VetSpecialtyServiceImpl extends AbstractMapService<VetSpecialty, Long> implements VetSpecialtyService {
+public class SpecialtyServiceImpl extends AbstractMapService<Specialty, Long> implements SpecialtyService {
     private Long key = 0L;
 
     @Override
-    public Set<VetSpecialty> findAll() {
+    public Set<Specialty> findAll() {
         return super.findAll();
     }
 
     @Override
-    public VetSpecialty findById(Long id) {
+    public Specialty findById(Long id) {
         return super.findById(id);
     }
 
     @Override
-    public VetSpecialty save(VetSpecialty object) {
+    public Specialty save(Specialty object) {
         if (object.getId() != null){
             return super.save(object.getId(), object);
         }else{
@@ -31,7 +31,7 @@ public class VetSpecialtyServiceImpl extends AbstractMapService<VetSpecialty, Lo
     }
 
     @Override
-    public void delete(VetSpecialty object) {
+    public void delete(Specialty object) {
         super.delete(object);
     }
 

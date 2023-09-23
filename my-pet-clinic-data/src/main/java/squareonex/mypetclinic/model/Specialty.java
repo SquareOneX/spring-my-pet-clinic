@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "specialties")
 @AllArgsConstructor
 @NoArgsConstructor
-public class VetSpecialty extends BaseEntity    {
+public class Specialty extends BaseEntity    {
     @Column(name = "description")
     private String description;
 }

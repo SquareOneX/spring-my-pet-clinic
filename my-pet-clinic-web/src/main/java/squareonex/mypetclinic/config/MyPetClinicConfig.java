@@ -35,7 +35,7 @@ public class MyPetClinicConfig {
         return new PetTypeServiceImpl();
     }
     @Bean
-    VetSpecialtyService vetSpecialtyService() {
-        return new VetSpecialtyServiceImpl();
+    SpecialtyService vetSpecialtyService() {
+        return new SpecialtyServiceImpl();
     }
 }
