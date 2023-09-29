@@ -3,8 +3,10 @@ package squareonex.mypetclinic.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import squareonex.mypetclinic.datasource.FakeDataSource;
+import squareonex.mypetclinic.repositories.OwnerRepository;
 import squareonex.mypetclinic.services.*;
 import squareonex.mypetclinic.services.map.*;
 
@@ -19,8 +21,14 @@ public class MyPetClinicConfig {
         return new FakeDataSource(username, password, jdbcURL);
     }
     @Bean
+    @Profile("map")
     OwnerService ownerService(){
-        return new OwnerServiceImpl();
+        return new OwnerServiceMapImpl();
+    }
+    @Bean(name = "ownerService")
+    @Profile("jpa")
+    OwnerService ownerServiceJpa(OwnerRepository ownerRepository){
+        return new squareonex.mypetclinic.services.springdatajpa.OwnerServiceImpl(ownerRepository);
     }
     @Bean
     PetService petService(){

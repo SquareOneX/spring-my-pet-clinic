@@ -31,12 +31,12 @@ public class DataLoader implements CommandLineRunner {
 
         int count = ownerService.findAll().size();
 
-        if (count == 0 ){
+        if (count == 0) {
             loadData();
         }
     }
 
-    private void loadData() {
+    public void loadData() {
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
@@ -44,7 +44,7 @@ public class DataLoader implements CommandLineRunner {
         owner1.setCity("Freiberg - GER");
         owner1.setTelephone("0815 4206969");
 
-        ownerService.save(owner1);
+        owner1 = ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
@@ -53,14 +53,14 @@ public class DataLoader implements CommandLineRunner {
         owner2.setCity("Diamond City");
         owner2.setTelephone(null);
 
-        ownerService.save(owner2);
+        owner2 = ownerService.save(owner2);
 
         System.out.println("Loaded Owners....");
 
         Specialty specialty1 = new Specialty("Dog care");
         Specialty specialty2 = new Specialty("Animal dentistry");
-        vetSpecialtyService.save(specialty1);
-        vetSpecialtyService.save(specialty2);
+        specialty1 = vetSpecialtyService.save(specialty1);
+        specialty2 = vetSpecialtyService.save(specialty2);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
@@ -80,6 +80,7 @@ public class DataLoader implements CommandLineRunner {
 
         Pet pet1 = new Pet();
         pet1.setOwner(owner1);
+        pet1.setName("Tom");
 
         PetType petType = new PetType("cat");
 
@@ -88,6 +89,7 @@ public class DataLoader implements CommandLineRunner {
 
         Pet pet2 = new Pet();
         pet2.setOwner(owner2);
+        pet2.setName("bola");
 
         pet2.setPetType(petType);
         pet2.setBirthDate(LocalDate.of(2022, Month.OCTOBER, 15));
@@ -96,24 +98,22 @@ public class DataLoader implements CommandLineRunner {
         pet3.setOwner(owner1);
         pet3.setBirthDate(LocalDate.of(2023, Month.JUNE, 1));
 
-        owner1.setPets(Set.of(pet1, pet3));
-        owner2.setPets(Set.of(pet2));
-
-        ownerService.save(owner1);
-        ownerService.save(owner2);
-
         PetType petType1 = new PetType("cat");
         PetType petType2 = new PetType("dog");
         PetType petType3 = new PetType("mouse");
 
         pet1.setPetType(petType1);
         pet2.setPetType(petType2);
-        petService.save(pet2);
-        petService.save(pet1);
+        pet2 = petService.save(pet2);
+        pet1 = petService.save(pet1);
 
         petTypeService.save(petType1);
         petTypeService.save(petType2);
         petTypeService.save(petType3);
 
         System.out.println("Loaded Pets....");
-    }}
+
+        owner1.setPets(Set.of(pet1, pet3));
+        owner2.setPets(Set.of(pet2));
+    }
+}

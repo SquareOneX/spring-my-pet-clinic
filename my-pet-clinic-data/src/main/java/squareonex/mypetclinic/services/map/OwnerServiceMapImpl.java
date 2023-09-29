@@ -5,7 +5,7 @@ import squareonex.mypetclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceImpl extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerServiceMapImpl extends AbstractMapService<Owner, Long> implements OwnerService {
     private Long key = 0L;
 
     @Override
