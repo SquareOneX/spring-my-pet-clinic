@@ -5,7 +5,7 @@ import squareonex.mypetclinic.services.PetTypeService;
 
 import java.util.Set;
 
-public class PetTypeServiceImpl extends AbstractMapService<PetType, Long> implements PetTypeService {
+public class PetTypeServiceMapImpl extends AbstractMapService<PetType, Long> implements PetTypeService {
     private Long key = 0L;
 
     @Override
