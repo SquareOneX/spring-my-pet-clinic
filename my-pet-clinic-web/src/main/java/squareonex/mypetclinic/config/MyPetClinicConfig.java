@@ -9,10 +9,12 @@ import squareonex.mypetclinic.datasource.FakeDataSource;
 import squareonex.mypetclinic.repositories.OwnerRepository;
 import squareonex.mypetclinic.repositories.PetRepository;
 import squareonex.mypetclinic.repositories.PetTypeRepository;
+import squareonex.mypetclinic.repositories.SpecialtyRepository;
 import squareonex.mypetclinic.services.*;
 import squareonex.mypetclinic.services.map.*;
 import squareonex.mypetclinic.services.springdatajpa.PetServiceImpl;
 import squareonex.mypetclinic.services.springdatajpa.PetTypeServiceImpl;
+import squareonex.mypetclinic.services.springdatajpa.SpecialtyServiceImpl;
 
 @PropertySource("classpath:datasource.properties")
 @Configuration
@@ -53,13 +55,19 @@ public class MyPetClinicConfig {
     PetTypeService petTypeService() {
         return new PetTypeServiceMapImpl();
     }
-    @Bean
+    @Bean(name = "petTypeService")
     @Profile("jpa")
     PetTypeService petTypeJPAService(PetTypeRepository petTypeRepository) {
         return new PetTypeServiceImpl(petTypeRepository);
     }
     @Bean
+    @Profile("map")
     SpecialtyService vetSpecialtyService() {
-        return new SpecialtyServiceImpl();
+        return new SpecialtyServiceMapImpl();
+    }
+    @Bean(name = "vetSpecialtyService")
+    @Profile("jpa")
+    SpecialtyService vetSpecialtyJPAService(SpecialtyRepository repository) {
+        return new SpecialtyServiceImpl(repository);
     }
 }
