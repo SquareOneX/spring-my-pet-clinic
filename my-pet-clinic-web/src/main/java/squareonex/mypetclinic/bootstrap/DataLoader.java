@@ -102,14 +102,15 @@ public class DataLoader implements CommandLineRunner {
         PetType petType2 = new PetType("dog");
         PetType petType3 = new PetType("mouse");
 
+        petType1 = petTypeService.save(petType1);
+        petType2 = petTypeService.save(petType2);
+        petType3 = petTypeService.save(petType3);
+
+
         pet1.setPetType(petType1);
         pet2.setPetType(petType2);
         pet2 = petService.save(pet2);
         pet1 = petService.save(pet1);
-
-        petTypeService.save(petType1);
-        petTypeService.save(petType2);
-        petTypeService.save(petType3);
 
         System.out.println("Loaded Pets....");
 
