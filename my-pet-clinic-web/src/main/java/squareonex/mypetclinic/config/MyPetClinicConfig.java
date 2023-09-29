@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import squareonex.mypetclinic.datasource.FakeDataSource;
 import squareonex.mypetclinic.repositories.OwnerRepository;
+import squareonex.mypetclinic.repositories.PetRepository;
 import squareonex.mypetclinic.services.*;
 import squareonex.mypetclinic.services.map.*;
+import squareonex.mypetclinic.services.springdatajpa.PetServiceImpl;
 
 @PropertySource("classpath:datasource.properties")
 @Configuration
@@ -31,8 +33,14 @@ public class MyPetClinicConfig {
         return new squareonex.mypetclinic.services.springdatajpa.OwnerServiceImpl(ownerRepository);
     }
     @Bean
+    @Profile("map")
     PetService petService(){
-        return new PetServiceImpl();
+        return new PetServiceMapImpl();
+    }
+    @Bean(name = "petService")
+    @Profile("jpa")
+    PetService petJPAService(PetRepository petRepository){
+        return new PetServiceImpl(petRepository);
     }
     @Bean
     VetService vetService() {
